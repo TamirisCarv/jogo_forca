@@ -1,0 +1,76 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #020b2e, #000000), radial-gradient(ellipse at center, rgba(255, 0, 255, 0.8) 0%, rgba(255, 0, 255, 0) 70%);
+    background-size: cover;
+    color: aliceblue;
+    font-family: "Roboto", sans-serif;
+}
+
+input[type="text"] {
+    width: 30px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+
+img {
+    max-width: 70%;
+    height: auto;
+}
+
+h1 {
+    font-size: 50px;
+    font-family: 'Bruno Ace SC', cursive;
+    letter-spacing: 2px;
+    background-image: linear-gradient(to bottom right, #ff00ff, #0080ff);
+    color: white;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+
+h2 {
+    letter-spacing: 1px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+.letras-erradas-container {
+    position: relative;
+    right: -200px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-family: 'Open Sans', sans-serif;
+    padding: 5px 10px 5px 20px;
+    background: rgba(17, 49, 234, 0.2);
+
+    text-transform: uppercase;
+    border-radius: 8%;
+
+
+}
+
+.letras-erradas-container span {
+    margin: 0 2px;
+}
+
+
+
+
+#btn-dica {
+    background-color: #ff00ff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+

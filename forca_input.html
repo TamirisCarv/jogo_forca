@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Jogo da Forca</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Open+Sans:wght@300&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <h1>Jogo da Forca</h1>
+    <p>Descubra a palavra secreta!</p>
+
+    <div id="palavra"></div>
+
+    <form>
+        <br>
+        <label for="letra">Digite uma letra:</label>
+        <input type="text" id="letra" maxlength="1">
+        <button type="button" onclick="verificar()">Verificar</button>
+    </form>
+    <br>
+
+    <div id="forca">
+        <img src="./imagens/forca.png" alt="Forca">
+    </div>
+
+    <div class="letras-erradas-container">
+
+        <div id="letras-erradas"></div>
+    </div>
+    <div class="dica-container">
+        <button id="btn-dica">Dica</button>
+        <div id="dica" class="dica"></div>
+    </div>
+    
+
+    <script>
+        // Array de palavras
+        let dica = "Matérias do Curso SI";
+        let materias = ["padroes", "estatistica", "banco", "ingles", "java"];
+
+        // Sorteia uma palavra
+        let palavra = materias[Math.floor(Math.random() * materias.length)];
+
+        // Inicializa a palavra a ser adivinhada
+        let palavraAdivinhada = "";
+        for (let i = 0; i < palavra.length; i++) {
+            palavraAdivinhada += "<input type='text' disabled>";
+        }
+        document.getElementById("palavra").innerHTML = palavraAdivinhada;
+
+        // Número de erros
+        let erros = 0;
+
+        // Letras erradas
+        let letrasErradas = [];
+
+        // Exibe a dica quando o botão é clicado
+        document.getElementById("btn-dica").addEventListener("click", function () {
+            document.getElementById("dica").textContent = dica;
+        });
+
+        // Verifica se a letra está na palavra
+        function verificar() {
+            let letra = document.getElementById("letra").value.toLowerCase();
+            document.getElementById("letra").value = ""; // Limpa o campo de texto
+
+            
+
+            let acertou = false;
+            for (let i = 0; i < palavra.length; i++) {
+                if (palavra[i] == letra) {
+                    acertou = true;
+                    document.getElementById("palavra").children[i].value = letra;
+                }
+            }
+
+            if (!acertou) {
+                erros++;
+                letrasErradas.push(letra);
+                document.getElementById("letras-erradas").textContent = "Letras erradas: " + letrasErradas.join(", ");
+                switch (erros) {
+                    case 1:
+                        document.getElementById("forca").innerHTML = "<img src='./imagens/cabeca.png'>";
+                        break;
+                    case 2:
+                        document.getElementById("forca").innerHTML = "<img src='./imagens/corpo.png'>";
+                        break;
+                    case 3:
+                        document.getElementById("forca").innerHTML = "<img src='./imagens/perna1.png'>";
+                        break;
+                    case 4:
+                        document.getElementById("forca").innerHTML = "<img src='./imagens/perna2.png'>";
+                        break;
+                    case 5:
+                        document.getElementById("forca").innerHTML = "<img src='./imagens/forca.png'>";
+                        alert("Você perdeu! A palavra era " + palavra.toUpperCase());
+                        break;
+                }
+
+            } else {
+                // Verifica se a palavra foi adivinhada
+                let acertouPalavra = true;
+                for (let i = 0; i < palavra.length; i++) {
+                    if (document.getElementById("palavra").children[i].value == "") {
+                        acertouPalavra = false;
+                        break;
+                    }
+                }
+                if (acertouPalavra) {
+                    alert("Parabéns, você ganhou! A palavra era " + palavra.toUpperCase());
+                }
+            }
+           
+          
+
+        }
+
+    </script>
